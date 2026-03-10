@@ -1,0 +1,26 @@
+version: 0.0
+os: linux
+ 
+files:
+  - source: /
+    destination: /home/ec2-user/janken-app
+    overwrite: yes
+ 
+hooks:
+  # ① まず古いアプリを停止する
+  ApplicationStop:
+    - location: scripts/stop_application.sh
+      timeout: 300
+      runas: ec2-user
+ 
+  # ② ファイル配置後にパッケージをインストール
+  AfterInstall:
+    - location: scripts/install_dependencies.sh
+      timeout: 300
+      runas: ec2-user
+ 
+  # ③ 新しいアプリを起動する
+  ApplicationStart:
+    - location: scripts/start_application.sh
+      timeout: 300
+      runas: ec2-user

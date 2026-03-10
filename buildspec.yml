@@ -1,0 +1,18 @@
+version: 0.2
+ 
+phases:
+  build:
+    commands:
+      - echo "Build started on `date`"
+      # py_compileはPythonの構文チェックツール
+      - python3 -m py_compile app.py
+      - echo "Build completed!"
+ 
+# CodeDeployに渡すファイルの一覧
+artifacts:
+  files:
+    - app.py
+    - requirements.txt
+    - appspec.yml
+    - scripts/**/*
+  discard-paths: no
