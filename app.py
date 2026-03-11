@@ -20,4 +20,4 @@ if st.button("じゃんけん！"):
          (user_choice == "パー" and computer_choice == "グー"):
         st.success("あなたの勝ち！")
     else:
-        st.error("コンピュータの勝ち...")
+        st.error("コンピュータの勝ち...!!")
